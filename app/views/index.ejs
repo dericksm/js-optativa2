@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Criação Personagem</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+		<link href="css/style.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="align-items-center mx-auto" style="width: 50vw; height: 50vh; margin-top: 15%">
+
+            <form action="/validate" method="POST">
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="nome">Nome</label>
+                        <input type="text" class="form-control" name="nome" placeholder="Nome" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="cidade">Cidade</label>
+                        <select name="cidade" class="form-control">
+                            <option value="Thais"selected>Thais</option>
+                            <option value="Carlin">Carlin</option>
+                            <option value="Venore">Venore</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="classe">Classe</label>
+                        <select name="classe" class="form-control">
+                            <option value="Guerreiro" selected>Guerreiro</option>
+                            <option value="Arqueiro">Arqueiro</option>
+                            <option value="Mago">Mago</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="sexo">Sexo</label>
+                        <input type="text" class="form-control" name="sexo" placeholder="Sexo" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="tutorial" value="true">
+                        <label class="form-check-label" for="tutorial">Realizar tutorial
+                        </label>
+                    </div>
+                </div>
+                <input id='btn-submit'type="submit" class="btn btn-primary"></button>
+            </form>
+
+            <div>
+                    <% if(validacao.length > 0 ){ %>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="alert alert-danger">
+                                    <strong>Atenção!</strong>
+                                    <ul>
+                                        <% validacao.forEach(error => { %>
+                                            <li><%=  error.msg %></li>
+                                        <% }) %>    
+                                    </ul>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                        <%}%>
+                </div>
+
+
+    </div>
+</body>
+
+</html>
