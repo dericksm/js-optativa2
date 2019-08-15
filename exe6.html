@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Itens</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+  <script src="./jquery.mask.min.js"></script>
+
+</head>
+
+
+<body>
+  <div class="align-items-center mx-auto" style="width: 50vw; height: 50vh; margin-top: 5%">
+
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="name">Nome</label>
+          <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="style">Estilo</label>
+          <input type="text" class="form-control" id="style" name="style" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="link">Link da imagem</label>
+          <input type="url" class="form-control" id="link" name="link" placeholder="https://example.com"
+            pattern="https://.*" required>
+        </div>
+      </div>
+      <input id='btn-submit' type="submit" class="btn btn-primary"></button>
+      <div class="form-check">
+        <input type="checkbox" class="form-check-input" id="checkAtualizar">
+        <label class="form-check-label" for="checkAtualizar">Atualizar</label>
+      </div>
+
+      <div class="form-group col-md-12">
+          <label for="atualizar">Nome do filme a ser atualizado</label>
+          <input type="text" class="form-control" id="atualizar" name="atualizar" required>
+        </div>
+    </form>
+
+    <form class="form-inline col-md-12" style="margin-top: 3%">
+      <div class="form-group ">
+        <label for="name-to-delete">Nome</label>
+        <input type="password" id="name-to-delete" class="form-control" required>
+
+        <input id='btn-delete' type="submit" class="btn btn-primary" value="Deletar"></button>
+      </div>
+    </form>
+
+  </div>
+  <div class="container">
+
+    <div class="card-group" id="cards">
+
+    </div>
+
+  </div>
+
+
+</body>
+
+<script>
+
+  $(document).ready(function () {
+
+    $("#btn-submit").click(function (event) {
+      event.preventDefault();
+
+      let name = $('#name').val()
+      let style = $('#style').val()
+      let link = $('#link').val()
+      
+      let atualizar = $('#atualizar').val()
+
+      if ($('#checkAtualizar').is(":checked")) {
+        $('#'+ atualizar).replaceWith(`
+          <div class="col-4" style="margin-bottom: 10%" id="${name}">
+            <div class="card">
+              <img
+               src="${link}"
+            class="card-img-top">
+          <div class="card-body">
+            <p class="card-text">
+              ${name} <br>
+              ${style}
+          </div>
+        </div>
+
+      </div>
+    `)
+
+      } else {
+        $('#cards').append(`
+          <div class="col-4" style="margin-bottom: 10%" id="${name}">
+            <div class="card">
+              <img
+               src="${link}"
+            class="card-img-top">
+          <div class="card-body">
+            <p class="card-text">
+              ${name} <br>
+              ${style}
+          </div>
+        </div>
+
+      </div>
+    `)
+      }
+
+    })
+
+    $("#btn-delete").click(function (event) {
+      event.preventDefault()
+      let toDelete = $("#name-to-delete").val()
+      $("#" + toDelete).remove();
+    })
+
+  })
+</script>
+
+</html>

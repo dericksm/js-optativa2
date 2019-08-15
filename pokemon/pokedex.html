@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+  <title>Poke Info</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+  <script src="https://unpkg.com/pokeapi-js-wrapper/dist/index.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="pokemons.css">
+  <script> const P = new Pokedex.Pokedex(); </script>
+</head>
+
+<body>
+  <div class="container text-center">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/98/International_Pok%C3%A9mon_logo.svg"
+      alt="Pokemon Logo">
+
+    <div class="row" style="margin-bottom: 20px">
+      <div class="col-lg-12 col-lg-offset-12 text-center" style="margin-top: 5%">
+        <div class="input-group">
+          <input id="pokeName" type="text" class="form-control">
+          <div class="input-group-append">
+            <button class="btn btn-primary" id="search" type="button">Button</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="container">
+    <div class="card-group" style="display: none"id="pokeCards">
+
+    </div>
+
+  </div>
+
+  <script src="pokemons.js"></script>
+</body>
+
+</html>

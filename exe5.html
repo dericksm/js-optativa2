@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Itens</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
+
+</head>
+
+
+<body>
+  <div class="align-items-center mx-auto" style="width: 50vw; height: 50vh; margin-top: 5%">
+
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="item">Item</label>
+          <input type="text" class="form-control" id="item" name="item" placeholder="Descrição do produto" required>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-12">
+          <label for="valor">Valor</label>
+          <input type="text" class="form-control" id="price" name="valor" placeholder="55,00" required>
+        </div>
+      </div>
+
+      <input id='btn-submit' type="submit" class="btn btn-primary"></button>
+    </form>
+
+  </div>
+  <div class="col-md-6 align-items-center mx-auto">
+
+    <table id="itens-list" class="table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Item</th>
+          <th>Valor</th>
+        </tr>
+      </thead>
+      <tbody id="resultados">
+
+      </tbody>
+      <tr id="row-total" class="table-success">
+        <th></th>
+        <th>Total</th>
+        <th id="total"></th>
+      </tr>
+    </table>
+
+  </div>
+
+</body>
+
+<script>
+  let total = 0
+  $(document).ready(function () {
+    let itensList = []
+
+    $('#price').mask('00.00', { reverse: true });
+
+    $("#btn-submit").click(function (event) {
+      event.preventDefault();
+
+      let item = $('#item').val()
+      let valor = $('#price').val()
+
+      itensList.push({
+        item, valor
+      })
+
+      $("#resultados").append(
+        `
+    <tr>
+      <td>${itensList.length}</td>
+      <td>${item}</td>
+      <td>${valor}</td>
+    </tr>
+    ` )
+
+      total += parseFloat(valor)
+      if (total > 50) {
+        $("#row-total").removeClass('table-success')
+        $("#row-total").addClass('table-danger')
+      }
+      $("#total").html(total)
+    })
+
+  });
+
+
+
+
+</script>
+
+</html>
