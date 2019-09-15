@@ -1,0 +1,45 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.js"></script>
+<% if (messages.success) { %>
+<div class="flash flash-success"><%= messages.success %></div>
+<% } %>
+
+<h1>Lista de Produtos</h1>
+
+<div class="col-xs-6">
+    <button id="insert"class="btn btn-primary"> Inserir Produtos</button>
+</div>
+
+<div class="container">
+  <div class="text-center">
+    <div class="col-xs-12">
+
+      <table class="table table-dark">
+        <thead>
+          <tr>
+            <th scope="col">Produto</th>
+            <th scope="col">Price</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% list.forEach(product => { %>
+          <tr>
+            <td> <%= product.name %> </td>
+            <td> <%= product.price %> </td>
+          </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+</div>
+
+<script>
+  $("#insert").on('click', function(){
+     window.location = "http://localhost:8080/inserir";    
+});
+</script>
