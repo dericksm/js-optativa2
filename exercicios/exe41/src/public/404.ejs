@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container">
+
+        <div class="table-responsive">
+            <table class="table table-striped table-hover">
+                <thead>
+                    <tr>
+                        <th>Oficinas</th>
+                        <th>Locais</th>
+                        <th>Participantes</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <% 
+                        data.oficina.forEach(ofc => { %>
+                    <tr>
+                        <td><%= ofc.nome %></td>
+                        <td><%= ofc.local %></td>
+                        <td><%= ofc.participantes.length %></td>
+                        </td>
+                    </tr>
+                    <% }) %>
+
+            </table>
+
+        </div>
+
+    </div>
+</body>
+</html>

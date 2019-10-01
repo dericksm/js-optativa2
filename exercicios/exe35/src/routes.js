@@ -20,7 +20,9 @@ router.get('/gerador', async (req, res) => {
   clube = clube.data
   clube = clube[Math.floor(Math.random() * Object.keys(clube).length)]
 
-  res.json({message: `${nome} ${sobrenome} é um futebolista brasileiro de 32 anos que atua como ${posicao}. Atualmente defende o ${clube}.`})
+  let idade = Math.floor(Math.random() * (40 - 17 + 1) + 17);
+
+    res.json({message: `${nome} ${sobrenome} é um futebolista brasileiro de ${idade} anos que atua como ${posicao}. Atualmente defende o ${clube}.`})
 })
 
 
