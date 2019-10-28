@@ -1,6 +1,6 @@
 import React from 'react'
 
-class EntradUnidade extends React.Component {
+class Investimento extends React.Component {
     constructor(props) {
         super(props)
     }
@@ -11,8 +11,11 @@ class EntradUnidade extends React.Component {
 
     render() {
         return <div>
-            <input type="text" value={this.props.valor} onChange={this.handleChange}/>
+            <span>Investimento</span>
+            <input type="number" value={this.props.valor} onChange={this.handleChange}/>
             </div>
     }
 
 }
+
+export default Investimento

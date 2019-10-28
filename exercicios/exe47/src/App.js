@@ -3,6 +3,7 @@ import Total from './Total'
 import Meses from './Meses'
 import Investimento from './Investimento'
 const axios = require('axios')
+
 class CalculaInvestimentos extends React.Component {
   constructor(props) {
     super(props)
@@ -16,28 +17,24 @@ class CalculaInvestimentos extends React.Component {
 
 
 
-  handleMeses = (meses) => {
-
-    axios.get('/user?ID=12345')
+  handleMeses = (query) => {
+    let url = `https://api.domainsdb.info/v1/domains/search?${query}`
+    axios.get(url)
       .then(function (response) {
-        // handle success
-        console.log(response);
+        this.setState({
+          domain: 
+          updateDate:
+          country: 
+          ipAddress :
+        })
       })
       .catch(function (error) {
-        // handle error
         console.log(error);
       })
-      .finally(function () {
-        // always executed
-      });
 
 
 
-    this.setState({
-      investimento: this.state.total / this.state.meses,
-      total: meses * this.state.investimento,
-      meses: meses
-    })
+    
   }
 
   render() {

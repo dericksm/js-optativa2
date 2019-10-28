@@ -1,35 +1,49 @@
 import React from 'react';
-import EntradaUnidade from './EntradUnidade'
+import Total from './Total'
+import Meses from './Meses'
+import Investimento from './Investimento'
 
-class Calculadora extends React.Component {
+class CalculaInvestimentos extends React.Component {
   constructor(props){
     super(props)
       this.state = {
-        bytes: 20,
-        kbytes: 2000
+        investimento: 1,
+        meses: 1,
+        total: 1
       }
   }
 
-  handleByteChange = (unidade) => {
+  handleInvestimento = (investimento) => {
     this.setState({
-      bytes: unidade,
-      kbytes: unidade *1000
+      investimento: investimento,
+      total: this.state.meses * this.state.investimento,
+      meses: this.state.total / this.state.investimento
     })
   }
 
-  handleKByteChange = (unidade) => {
+  handleTotal = (total) => {
     this.setState({
-      bytes: unidade / 1000,
-      kbytes: unidade
+      investimento: this.state.total / this.state.meses,
+      total: total,
+      meses: this.state.total / this.state.investimento
+    })
+  }
+
+  handleMeses = (meses) => {
+    this.setState({
+      investimento: this.state.total / this.state.meses,
+      total: meses * this.state.investimento,
+      meses: meses
     })
   }
 
   render(){
     return <div>
-      byte: <EntradaUnidade  valor={this.state.bytes} onUnitChange={this.handleByteChange} />
-      kbyte: <EntradaUnidade valor={this.state.kbytes} onUnitChange={this.handleKByteChange} />
+      total: <Total  valor={this.state.total} onUnitChange={this.handleTotal} />
+      meses: <Meses valor={this.state.meses} onUnitChange={this.handleMeses} />
+      investimento: <Investimento valor={this.state.investimento} onUnitChange={this.handleInvestimento} />
       </div>
   }
 }
 
-export default Calculadora
+export default CalculaInvestimentos
