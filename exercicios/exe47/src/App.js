@@ -1,7 +1,4 @@
 import React from 'react';
-import Total from './Total'
-import Meses from './Meses'
-import Investimento from './Investimento'
 const axios = require('axios')
 
 class CalculaInvestimentos extends React.Component {
@@ -11,21 +8,34 @@ class CalculaInvestimentos extends React.Component {
       domain: '',
       updateDate: '',
       country: '1',
-      ipAddress: ''
+      ipAddress: '',
+      search: ''
     }
   }
 
+  handleChange = (e) => {
+    this.setState({ search: e.target.value });
+  }
 
 
-  handleMeses = (query) => {
-    let url = `https://api.domainsdb.info/v1/domains/search?${query}`
-    axios.get(url)
+  handleClick = () => {
+
+    let config = {
+      headers: { 'Access-Control-Allow-Origin': '*' }
+    }
+
+    console.log(this.state.search)
+    let url = `https://api.domainsdb.info/v1/domains/search?${this.state.search}`
+    axios.get(url, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      }})
       .then(function (response) {
         this.setState({
-          domain: 
-          updateDate:
-          country: 
-          ipAddress :
+          domain: response.domains.domain,
+          updateDate: response.domains.update_main,
+          country: response.domains.country,
+          ipAddress: response.domains.A,
         })
       })
       .catch(function (error) {
@@ -34,15 +44,23 @@ class CalculaInvestimentos extends React.Component {
 
 
 
-    
+
   }
 
   render() {
     return <div>
-      total: <Total valor={this.state.total} onUnitChange={this.handleTotal} />
-      meses: <Meses valor={this.state.meses} onUnitChange={this.handleMeses} />
-      investimento: <Investimento valor={this.state.investimento} onUnitChange={this.handleInvestimento} />
+
+
+      <input type="text" onChange={this.handleChange} />
+      <input type="button" value="Pesquisar" onClick={this.handleClick} />
+      <div>
+        <input type="text" value={this.state.ip} readOnly />
+        <input type="text" value={this.state.domain} readOnly />
+        <input type="text" value={this.state.country} readOnly />
+        <input type="text" value={this.state.ipAddress} readOnly />
+      </div>
     </div>
+
   }
 }
 
