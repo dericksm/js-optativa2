@@ -5,10 +5,10 @@ import UserForm from './UserForm'
 
 class UserPage extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props)
         this.BASE_URL = "http://localhost:4000/api/users"
-        this.state = { users: []}
+        this.state = { users: [] }
         this.loadUsers()
     }
 
@@ -43,16 +43,22 @@ class UserPage extends React.Component {
         })
     }
 
-    render(){
+    render() {
 
         var userList = this.state.users.map((value) => {
-            return <UserItem key={value._id} value={value} handleAction={(id) => this.handleDelete(id)}/>
+            return <UserItem key={value._id} value={value} handleAction={(id) => this.handleDelete(id)} />
         })
 
-        return <div>
-            <UserForm handleAction={(data) => this.handleInsert(data)} />
-            {userList}
-        </div>
+        return (
+            <div className="row">
+                <div className="row">
+                    <UserForm handleAction={(data) => this.handleInsert(data)} />
+                </div>
+                <div className="row">
+                    {userList}
+                </div>
+            </div>
+        )
     }
 }
 
